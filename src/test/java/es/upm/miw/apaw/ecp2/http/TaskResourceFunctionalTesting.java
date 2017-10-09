@@ -13,13 +13,17 @@ public class TaskResourceFunctionalTesting {
 
     
     public void testCreateTask() {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").body("1").build();
+        request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").body("1").build();
         new HttpClientService().httpRequest(request);
     }
     @Test
     public void testGetTasksId() {
         testCreateTask();
         
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/1").build();
+        System.out.println(new HttpClientService().httpRequest(request).getBody());
+                
+       
     }
 
 }
