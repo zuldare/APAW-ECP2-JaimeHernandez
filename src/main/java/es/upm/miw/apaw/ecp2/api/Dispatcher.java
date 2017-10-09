@@ -12,9 +12,17 @@ public class Dispatcher {
     }
 
     public void doGet(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath("tasks/{id}")) {
+            String body = String.format("[{%sid%s:%s1%s}]","\"","\"","\"","\"");
+            response.setBody(body);
+        }
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath("/tasks")) {
+            // TODO create a resource --> request.getBody
+            response.setStatus(HttpStatus.CREATED);
+        }
     }
 
     public void doPut(HttpRequest request, HttpResponse response) {
