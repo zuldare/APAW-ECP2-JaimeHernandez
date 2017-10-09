@@ -3,7 +3,7 @@
 >
 > El modelo de entidades ha sido indicado en la retroalimentación de la práctica ECP1. También puede observarse en la siguiente figura
 
-   ![Diagrama tareas](file:///Users/zuldare/Downloads/ECP-task-user.png)
+   [[https://github.com/zuldare/APAW-ECP2-JaimeHernandez/blob/develop/docs/wiki/ECP-task-user.png]]
 
 > #### [Máster en Ingeniería Web por la Universidad Politécnica de Madrid (miw-upm)](http://miw.etsisi.upm.es)
 > #### Asignatura: *Arquitectura y Patrones para Aplicaciones Web*
