@@ -13,6 +13,6 @@ A continuación presentamos el diagrama de clases del paquete de entidades:
 
 Ejemplo: `GET /tasks/5`
 
-Parámetros | Respuesta | Respuesta si<br>_id_ no existe<br> o _id_ no entero
---|--|--
--- | `OK (200) {"id":5,"state":"CREATED"}` | `BAD_REQUEST(400)`<br> `{"error":"TaskIdNotFoundException"}`<br>`{"error":"RequestInvalidException"}`
+Parámetros | Respuesta | Respuesta si  _id_ no entero
+--|--|-- 
+-- | `OK (200) {"id":5,"state":"CREATED"}` | `BAD_REQUEST(400)`<br>`{"error":"RequestInvalidException"}`

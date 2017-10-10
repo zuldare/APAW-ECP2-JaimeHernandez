@@ -1,5 +1,6 @@
 package es.upm.miw.apaw.ecp2.api.resources;
 
+import es.upm.miw.apaw.ecp2.api.controllers.TaskController;
 import es.upm.miw.apaw.ecp2.resources.exceptions.TaskIdNotFoundException;
 
 public class TaskResource {
@@ -15,9 +16,6 @@ public class TaskResource {
     }
 
     public void getTask(int id) throws TaskIdNotFoundException {
-        if (id != 1) {
-            throw new TaskIdNotFoundException();
-        }
+        new TaskController().getTask(id);
     }
-
 }
