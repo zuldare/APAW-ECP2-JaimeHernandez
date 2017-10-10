@@ -5,7 +5,6 @@ import es.upm.miw.apaw.ecp2.http.HttpRequest;
 import es.upm.miw.apaw.ecp2.http.HttpResponse;
 import es.upm.miw.apaw.ecp2.http.HttpStatus;
 import es.upm.miw.apaw.ecp2.resources.exceptions.RequestInvalidException;
-import es.upm.miw.apaw.ecp2.resources.exceptions.TaskIdNotFoundException;
 
 public class Dispatcher {
 
@@ -20,10 +19,7 @@ public class Dispatcher {
         try {
             if (request.isEqualsPath("tasks/{id}")) {
                 int id = Integer.parseInt(request.paths()[1]);
-
-                taskResource.getTask(id);
-                String body = String.format("[{%sid%s:%s1%s}]", "\"", "\"", "\"", "\"");
-                response.setBody(body);
+                request.setBody(taskResource.getTask(id).toString());
             } else {
                 throw new RequestInvalidException(request.getPath());
             }

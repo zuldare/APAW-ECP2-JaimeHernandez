@@ -22,6 +22,7 @@ public class TaskResourceFunctionalTesting {
     public void testGetTasksId() {
         testCreateTask();
         request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/1").build(); 
+        System.out.println(">>>> " + new HttpClientService().httpRequest(request).getBody());
         assertEquals("[{\"id\":\"1\"}]", new HttpClientService().httpRequest(request).getBody());
     }
      
