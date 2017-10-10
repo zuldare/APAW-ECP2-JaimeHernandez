@@ -24,5 +24,10 @@ public class TaskResourceFunctionalTesting {
         request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/1").build(); 
         assertEquals("[{\"id\":\"1\"}]", new HttpClientService().httpRequest(request).getBody());
     }
-
+    
+    @Test(expected = HttpException.class)
+    public void testGetTaskIdNotFoundException() {
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/10").build();
+        new HttpClientService().httpRequest(request).getBody();
+    }
 }
