@@ -3,6 +3,8 @@ package es.upm.miw.apaw.ecp2.api;
 import es.upm.miw.apaw.ecp2.http.HttpRequest;
 import es.upm.miw.apaw.ecp2.http.HttpResponse;
 import es.upm.miw.apaw.ecp2.http.HttpStatus;
+import es.upm.miw.apaw.ecp2.resources.exceptions.RequestInvalidException;
+import es.upm.miw.apaw.ecp2.resources.exceptions.TaskIdNotFoundException;
 
 public class Dispatcher {
 
@@ -12,9 +14,19 @@ public class Dispatcher {
     }
 
     public void doGet(HttpRequest request, HttpResponse response) {
-        if (request.isEqualsPath("tasks/{id}")) {
-            String body = String.format("[{%sid%s:%s1%s}]","\"","\"","\"","\"");
-            response.setBody(body);
+        try {
+            if (request.isEqualsPath("tasks/{id}")) { 
+                if (request.paths()[1] == "1") {
+                    String body = String.format("[{%sid%s:%s1%s}]","\"","\"","\"","\"");
+                    response.setBody(body);
+                } else {
+                    throw new TaskIdNotFoundException();
+                }
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
         }
     }
 
