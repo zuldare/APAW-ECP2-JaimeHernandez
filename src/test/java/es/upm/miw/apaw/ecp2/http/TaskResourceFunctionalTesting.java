@@ -30,4 +30,11 @@ public class TaskResourceFunctionalTesting {
         request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/10").build();
         new HttpClientService().httpRequest(request).getBody();
     }
+    
+    @Test(expected = HttpException.class)
+    public void testGetTaskRequestInvalidException() {
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/X").build();
+        new HttpClientService().httpRequest(request).getBody();
+    }
+    
 }

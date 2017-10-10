@@ -16,7 +16,9 @@ public class Dispatcher {
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
             if (request.isEqualsPath("tasks/{id}")) { 
-                if (request.paths()[1] == "1") {
+                int id = Integer.parseInt(request.paths()[1]);
+                
+                if (id == 1) {
                     String body = String.format("[{%sid%s:%s1%s}]","\"","\"","\"","\"");
                     response.setBody(body);
                 } else {
