@@ -19,4 +19,8 @@ public class TaskResource {
     public TaskDto getTask(int id) throws TaskIdNotFoundException {
         return new TaskController().getTask(id);
     }
+
+    public void createTask() {
+        new TaskController().createTask();
+    }
 }

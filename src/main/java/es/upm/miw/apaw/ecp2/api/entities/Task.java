@@ -4,7 +4,7 @@ public class Task {
     private int id;
 
     public Task(int id) {
-        assert id > 0;
+        assert id >= 0;
         this.id = id;
     }
 

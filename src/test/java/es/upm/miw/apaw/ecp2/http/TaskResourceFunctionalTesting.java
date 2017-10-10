@@ -2,9 +2,14 @@ package es.upm.miw.apaw.ecp2.http;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import es.upm.miw.apaw.ecp2.api.daos.DaoFactory;
+import es.upm.miw.apaw.ecp2.api.daos.memory.DaoMemoryFactory;
+ 
 
 public class TaskResourceFunctionalTesting {
     
@@ -13,10 +18,18 @@ public class TaskResourceFunctionalTesting {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
+    @Before
+    public void before() {
+        DaoFactory.setFactory(new DaoMemoryFactory());
+    }
     
+    @Test
     public void testCreateTask() {
-        request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").body("1").build();
-        new HttpClientService().httpRequest(request);
+        request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").build(); 
+        //assertEquals("",new HttpClientService().httpRequest(request).getBody());
+        assertEquals(HttpStatus.CREATED,new HttpClientService().httpRequest(request).getStatus());
+        request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").build(); 
+        assertEquals(HttpStatus.CREATED,new HttpClientService().httpRequest(request).getStatus());
     }
     
     @Test(expected = AssertionError.class)
