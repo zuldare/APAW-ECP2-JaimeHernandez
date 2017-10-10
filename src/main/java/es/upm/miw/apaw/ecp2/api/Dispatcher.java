@@ -1,5 +1,6 @@
 package es.upm.miw.apaw.ecp2.api;
 
+import es.upm.miw.apaw.ecp2.api.resources.TaskResource;
 import es.upm.miw.apaw.ecp2.http.HttpRequest;
 import es.upm.miw.apaw.ecp2.http.HttpResponse;
 import es.upm.miw.apaw.ecp2.http.HttpStatus;
@@ -8,6 +9,8 @@ import es.upm.miw.apaw.ecp2.resources.exceptions.TaskIdNotFoundException;
 
 public class Dispatcher {
 
+    private TaskResource taskResource = new TaskResource();
+
     private void responseError(HttpResponse response, Exception e) {
         response.setBody("{\"error\":\"" + e + "\"}");
         response.setStatus(HttpStatus.BAD_REQUEST);
@@ -15,15 +18,12 @@ public class Dispatcher {
 
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath("tasks/{id}")) { 
+            if (request.isEqualsPath("tasks/{id}")) {
                 int id = Integer.parseInt(request.paths()[1]);
-                
-                if (id == 1) {
-                    String body = String.format("[{%sid%s:%s1%s}]","\"","\"","\"","\"");
-                    response.setBody(body);
-                } else {
-                    throw new TaskIdNotFoundException();
-                }
+
+                taskResource.getTask(id);
+                String body = String.format("[{%sid%s:%s1%s}]", "\"", "\"", "\"", "\"");
+                response.setBody(body);
             } else {
                 throw new RequestInvalidException(request.getPath());
             }
