@@ -31,8 +31,6 @@ public class Dispatcher {
     public void doPost(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath("tasks")) {
             taskResource.createTask();
-            // TODO create a resource --> request.getBody
-            // response.setStatus(HttpStatus.CREATED);
             response.setStatus(HttpStatus.CREATED);
         }
     }

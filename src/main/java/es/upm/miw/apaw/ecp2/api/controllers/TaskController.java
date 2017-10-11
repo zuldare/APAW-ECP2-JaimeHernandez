@@ -1,7 +1,5 @@
 package es.upm.miw.apaw.ecp2.api.controllers;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class TaskController {
         int id = 0;
         if (!tasks.isEmpty()) {
             IntSummaryStatistics summary = tasks.stream().mapToInt(Task::getId).summaryStatistics();
-            id= summary.getMax()+1;
+            id = summary.getMax() + 1;
         }
         DaoFactory.getFactory().getTaskDao().create(new Task(id));
     }
