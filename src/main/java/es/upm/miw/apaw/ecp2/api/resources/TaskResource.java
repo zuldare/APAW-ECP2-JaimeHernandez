@@ -5,15 +5,10 @@ import es.upm.miw.apaw.ecp2.api.dtos.TaskDto;
 import es.upm.miw.apaw.ecp2.resources.exceptions.TaskIdNotFoundException;
 
 public class TaskResource {
-    private int id;
+
+    public static final String TASKS = "tasks";
 
     public TaskResource() {
-
-    }
-
-    public TaskResource(int id) {
-        assert id > 0;
-        this.id = id;
     }
 
     public TaskDto getTask(int id) throws TaskIdNotFoundException {

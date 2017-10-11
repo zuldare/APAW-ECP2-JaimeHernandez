@@ -9,6 +9,7 @@ import org.junit.rules.ExpectedException;
 
 import es.upm.miw.apaw.ecp2.api.daos.DaoFactory;
 import es.upm.miw.apaw.ecp2.api.daos.memory.DaoMemoryFactory;
+import es.upm.miw.apaw.ecp2.api.resources.TaskResource;
 
 public class TaskResourceFunctionalTesting {
 
@@ -24,9 +25,9 @@ public class TaskResourceFunctionalTesting {
 
     @Test
     public void testCreateTask() {
-        request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").build();
+        request = new HttpRequestBuilder().method(HttpMethod.POST).path(TaskResource.TASKS).build();
         assertEquals(HttpStatus.CREATED, new HttpClientService().httpRequest(request).getStatus());
-        request = new HttpRequestBuilder().method(HttpMethod.POST).path("tasks").build();
+        request = new HttpRequestBuilder().method(HttpMethod.POST).path(TaskResource.TASKS).build();
         assertEquals(HttpStatus.CREATED, new HttpClientService().httpRequest(request).getStatus());
     }
 
