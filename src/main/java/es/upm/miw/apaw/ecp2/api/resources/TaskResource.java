@@ -26,4 +26,8 @@ public class TaskResource {
     public void deleteTask(int id) {
         new TaskController().deleteTask(id);
     }
+
+    public TaskDto createTaskWithFixedUsers() {
+        return new TaskDto(new TaskController().createTaskWithFixedUsers());
+    }
 }
