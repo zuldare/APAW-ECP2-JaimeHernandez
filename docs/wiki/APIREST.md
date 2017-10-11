@@ -24,4 +24,4 @@ Ejemplo: `POST /tasks`
 
 Parámetros | Respuesta | Respuesta errónea
 --|--|--
---| `CREATED (201)` |`BAD_REQUEST(400)`
+--| `CREATED (201) {"id":5}` |`BAD_REQUEST(400)`
