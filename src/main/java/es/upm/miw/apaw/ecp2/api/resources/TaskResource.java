@@ -8,6 +8,10 @@ public class TaskResource {
 
     public static final String TASKS = "tasks";
 
+    public static final String ID = "/{id}";
+
+    public static final String TASKS_ID = TASKS + ID;
+
     public TaskResource() {
     }
 
