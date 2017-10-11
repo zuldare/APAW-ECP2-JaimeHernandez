@@ -42,6 +42,15 @@ public class Dispatcher {
     }
 
     public void doDelete(HttpRequest request, HttpResponse response) {
+        try {
+            if (request.isEqualsPath(TaskResource.TASKS_ID)) {
+                taskResource.deleteTask(Integer.valueOf(request.paths()[1]));
+                response.setStatus(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.NO_CONTENT);
+        }
+
     }
 
 }

@@ -23,4 +23,8 @@ public class TaskController {
         return getTask(id);
     }
 
+    public void deleteTask(int id) {
+        DaoFactory.getFactory().getTaskDao().deleteById(id);
+    }
+
 }
