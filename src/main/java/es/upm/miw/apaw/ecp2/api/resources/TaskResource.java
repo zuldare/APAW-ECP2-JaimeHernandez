@@ -22,4 +22,8 @@ public class TaskResource {
     public TaskDto createTask() {
         return new TaskDto(new TaskController().createTask());
     }
+
+    public void deleteTask(int id) {
+        new TaskController().deleteTask(id);
+    }
 }

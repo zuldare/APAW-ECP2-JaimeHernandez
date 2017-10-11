@@ -61,8 +61,22 @@ public class TaskResourceFunctionalTesting {
     public void testDeleteTasksId() {
         testCreateSingularTask();
         request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/1").build();
-        response = new HttpClientService().httpRequest(request);
-        assertEquals("{\"id\":1}", response.getBody());
+        response = new HttpClientService().httpRequest(request); 
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
+    }
+    
+    @Test 
+    public void testDeleteTaskNoTaskPreviouslyCreated() {
+        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/100").build();
+        response = new HttpClientService().httpRequest(request); 
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
+    }
+    
+    @Test 
+    public void testDeleteTaskStringId() {
+        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/XX").build();
+        response = new HttpClientService().httpRequest(request); 
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
     }
 
 }
