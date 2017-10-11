@@ -79,4 +79,13 @@ public class TaskResourceFunctionalTesting {
         assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
     }
 
+    @Test
+    public void testGetUsersFromTasksId() {
+        testCreateSingularTask();
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS_ID).expandPath("users").build();
+        response = new HttpClientService().httpRequest(request);
+        String text = "{{\"id\":1,\"state\":\"IN_PROGRESS\"},[{\"name\":\"Robert Martin\"},{\"name\":\"Kent Beck\"}]}";
+        assertEquals(HttpStatus.OK, response.getStatus());
+        assertEquals(text,response.getBody());
+    }
 }
