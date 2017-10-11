@@ -29,8 +29,8 @@ public class Dispatcher {
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
-        if (request.isEqualsPath("tasks")) {
-            taskResource.createTask();
+        if (request.isEqualsPath(TaskResource.TASKS)) {
+            response.setBody(taskResource.createTask().toString());
             response.setStatus(HttpStatus.CREATED);
         }
     }

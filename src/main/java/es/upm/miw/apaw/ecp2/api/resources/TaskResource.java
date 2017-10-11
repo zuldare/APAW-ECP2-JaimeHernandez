@@ -12,10 +12,10 @@ public class TaskResource {
     }
 
     public TaskDto getTask(int id) throws TaskIdNotFoundException {
-        return new TaskController().getTask(id);
+        return new TaskDto(new TaskController().getTask(id));
     }
 
-    public void createTask() {
-        new TaskController().createTask();
+    public TaskDto createTask() {
+        return new TaskDto(new TaskController().createTask());
     }
 }
