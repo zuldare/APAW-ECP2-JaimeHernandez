@@ -48,9 +48,9 @@ public class Dispatcher {
                 response.setStatus(HttpStatus.NO_CONTENT);
             }
         } catch (Exception e) {
-            responseError(response, e);
-        } 
-        
+            response.setStatus(HttpStatus.NO_CONTENT);
+        }
+
     }
 
 }
