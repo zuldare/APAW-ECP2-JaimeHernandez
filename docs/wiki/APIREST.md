@@ -13,6 +13,15 @@ A continuación presentamos el diagrama de clases del paquete de entidades:
 
 Ejemplo: `GET /tasks/5`
 
-Parámetros | Respuesta | Respuesta si  _id_ no entero
---|--|-- 
+Parámetros | Respuesta | Respuesta si _id_ no entero
+--|--|--
 -- | `OK (200) {"id":5,"state":"CREATED"}` | `BAD_REQUEST(400)`<br>`{"error":"RequestInvalidException"}`
+
+## Crear una nueva tarea `POST /tasks` 
+> Crea una nueva tarea, devolviendo el id de la tarea creada.
+
+Ejemplo: `POST /tasks`
+
+Parámetros | Respuesta | Respuesta errónea
+--|--|--
+--| `CREATED (201)` |`BAD_REQUEST(400)`
