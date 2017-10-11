@@ -25,6 +25,11 @@ public class TaskResourceFunctionalTesting {
         DaoFactory.setFactory(new DaoMemoryFactory());
     }
 
+    private void testCreateSingularTask() {
+        request = new HttpRequestBuilder().method(HttpMethod.POST).path(TaskResource.TASKS).build();
+        response = new HttpClientService().httpRequest(request);
+    }
+
     @Test
     public void testCreateTask() {
         request = new HttpRequestBuilder().method(HttpMethod.POST).path(TaskResource.TASKS).build();
@@ -50,6 +55,14 @@ public class TaskResourceFunctionalTesting {
     public void testGetTaskRequestInvalidException() {
         request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/X").build();
         new HttpClientService().httpRequest(request).getBody();
+    }
+
+    @Test
+    public void testDeleteTasksId() {
+        testCreateSingularTask();
+        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/1").build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals("{\"id\":1}", response.getBody());
     }
 
 }

@@ -25,3 +25,12 @@ Ejemplo: `POST /tasks`
 Parámetros | Respuesta | Respuesta errónea
 --|--|--
 --| `CREATED (201) {"id":5}` |`BAD_REQUEST(400)`
+
+## Borrar una tarea `DELETE /tasks/{id}`
+> Borra una tarea concreta, devolviendo el id de la tarea creada
+
+Ejemplo: `DELETE /tasks/1`
+
+Parámetros | Respuesta
+--|--
+--| `OK (200) {"id":1}`
