@@ -15,6 +15,4 @@ public abstract class DaoFactory {
 
     public abstract TaskDao getTaskDao();
 
-    //public abstract VoteDao getVoteDao();
-
 }
