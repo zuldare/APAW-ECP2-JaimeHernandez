@@ -17,9 +17,9 @@ public class Dispatcher {
 
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath("tasks/{id}")) {
+            if (request.isEqualsPath(TaskResource.TASKS_ID)) {
                 int id = Integer.parseInt(request.paths()[1]);
-                request.setBody(taskResource.getTask(id).toString());
+                response.setBody(taskResource.getTask(id).toStringWithState());
             } else {
                 throw new RequestInvalidException(request.getPath());
             }
