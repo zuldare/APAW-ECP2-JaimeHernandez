@@ -3,6 +3,10 @@ package es.upm.miw.apaw.ecp2.api.entities;
 public class Task {
     private int id;
 
+    public Task() {
+
+    }
+
     public Task(int id) {
         assert id >= 0;
         this.id = id;
