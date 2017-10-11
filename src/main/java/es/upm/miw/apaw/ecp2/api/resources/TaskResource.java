@@ -11,6 +11,8 @@ public class TaskResource {
     public static final String ID = "/{id}";
 
     public static final String TASKS_ID = TASKS + ID;
+    
+    public static final String ID_USERS = ID + "/users";
 
     public TaskResource() {
     }

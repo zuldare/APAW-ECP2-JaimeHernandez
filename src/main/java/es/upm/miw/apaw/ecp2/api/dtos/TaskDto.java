@@ -1,5 +1,6 @@
 package es.upm.miw.apaw.ecp2.api.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import es.upm.miw.apaw.ecp2.api.entities.State;
@@ -22,6 +23,7 @@ public class TaskDto {
         assert task != null;
         id = task.getId();
         state = task.getState();
+        users = new ArrayList<User>(task.getUsers());
     }
 
     @Override

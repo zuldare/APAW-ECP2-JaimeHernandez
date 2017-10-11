@@ -37,10 +37,9 @@ public class TaskController {
     }
     
     public Task createTaskWithFixedUsers() {
-        int id = getMaxIdFromTasksList();
-        
-        DaoFactory.getFactory().getTaskDao().create(new Task(id));
-        return new Task(id,State.IN_PROGRESS,getListFixedUsers());
+        int id = getMaxIdFromTasksList(); 
+        DaoFactory.getFactory().getTaskDao().create(new Task(id,State.IN_PROGRESS,getListFixedUsers()));
+        return getTask(id);
     }
 
     private List<User> getListFixedUsers(){
