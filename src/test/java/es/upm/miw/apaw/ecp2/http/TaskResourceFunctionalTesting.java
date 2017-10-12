@@ -50,6 +50,12 @@ public class TaskResourceFunctionalTesting {
         response = new HttpClientService().httpRequest(request);
         assertEquals("{\"id\":1, \"state\":\"CREATED\"}", response.getBody());
     }
+    
+    @Test(expected = HttpException.class)
+    public void testGetTaskTaskIdNotFoundException() {
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path("tasks").path("/1999").build();
+        new HttpClientService().httpRequest(request).getBody();
+    }
 
     @Test(expected = HttpException.class)
     public void testGetTaskRequestInvalidException() {
