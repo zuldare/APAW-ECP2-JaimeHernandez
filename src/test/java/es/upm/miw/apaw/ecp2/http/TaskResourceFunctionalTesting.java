@@ -126,7 +126,7 @@ public class TaskResourceFunctionalTesting {
     @Test
     public void testCloseTask() {
         testCreateSingularTask();
-        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path(TaskResource.ID_CLOSE).expandPath("1")
+        request = new HttpRequestBuilder().method(HttpMethod.PATCH).path(TaskResource.TASKS).path(TaskResource.ID_CLOSE).expandPath("1")
                 .build();
         response = new HttpClientService().httpRequest(request);
         assertEquals(HttpStatus.OK, response.getStatus());

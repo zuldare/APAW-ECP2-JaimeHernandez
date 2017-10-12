@@ -45,4 +45,8 @@ public class TaskResource {
     public void deleteAllTasks() {
         new TaskController().deleteAllTasks();
     }
+
+    public void closeState(int id) {
+        new TaskController().closeState(id);
+    }
 }

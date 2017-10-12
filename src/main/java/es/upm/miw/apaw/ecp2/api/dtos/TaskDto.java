@@ -39,7 +39,7 @@ public class TaskDto {
         String userString = "[" + getUserNameFromUsers() + "]";
         return "{{\"id\":" + id + ", \"state\":\"" + this.state + "\"}" + ", " + userString + "}";
     }
-
+    
     private String getUserNameFromUsers() {
         String result = "";
         int pos = 0;

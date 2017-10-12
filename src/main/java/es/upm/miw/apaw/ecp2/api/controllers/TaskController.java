@@ -55,4 +55,11 @@ public class TaskController {
             DaoFactory.getFactory().getTaskDao().deleteById(task.getId());
         }
     }
+
+    public void closeState(int id) {
+        Task task = getTask(id);
+        task.setState(State.CLOSED);
+        DaoFactory.getFactory().getTaskDao().update(task);
+        
+    }
 }
