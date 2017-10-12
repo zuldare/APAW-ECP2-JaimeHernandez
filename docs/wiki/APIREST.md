@@ -25,3 +25,21 @@ Ejemplo: `POST /tasks`
 Parámetros | Respuesta | Respuesta errónea
 --|--|--
 --| `CREATED (201) {"id":5}` |`BAD_REQUEST(400)`
+
+## Borrar una tarea `DELETE /tasks/{id}`
+> Borra una tarea concreta, no devolviendo nada en el cuerpo
+
+Ejemplo: `DELETE /tasks/1`
+
+Parámetros | Respuesta
+--|--
+--| `NO CONTENT (204)`
+
+## Devolver la lista de usuarios que realizan una tarea `GET /tasks/{id}/users`
+> Devuelve el listado de usuarios que realizan una tarea concreta.
+
+Ejemplo: `GET /tasks/{id}/1`
+
+Parámetros | Respuesta | Respuesta si <br/>id no existe <br/>id no entero
+--|--|--
+--|`OK (200) {{"id":1,"state":"IN_PROGRESS"},[{"name":"Robert Martin"},{"name":"Kent Beck"}]}`|`BAD_REQUEST(400)` <br>`{"error":"TaskIdNotFoundException"}`<br> `{"error":"RequestInvalidException"}`

@@ -19,7 +19,14 @@ public class Dispatcher {
         try {
             if (request.isEqualsPath(TaskResource.TASKS_ID)) {
                 int id = Integer.parseInt(request.paths()[1]);
+                response.setStatus(HttpStatus.OK);
                 response.setBody(taskResource.getTask(id).toStringWithState());
+            } else if (request.isEqualsPath(TaskResource.TASKS_ID + TaskResource.USERS)) {
+                int id = Integer.parseInt(request.paths()[1]);
+                taskResource.getTask(id);
+
+                response.setStatus(HttpStatus.OK);
+                response.setBody(taskResource.createTaskWithFixedUsers().toStringWithStateAndUsers());
             } else {
                 throw new RequestInvalidException(request.getPath());
             }
@@ -42,6 +49,15 @@ public class Dispatcher {
     }
 
     public void doDelete(HttpRequest request, HttpResponse response) {
+        try {
+            if (request.isEqualsPath(TaskResource.TASKS_ID)) {
+                taskResource.deleteTask(Integer.valueOf(request.paths()[1]));
+                response.setStatus(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.NO_CONTENT);
+        }
+
     }
 
 }
