@@ -49,8 +49,9 @@ public class Dispatcher {
         try {
              if (request.isEqualsPath(TaskResource.TASKS + TaskResource.ID_CLOSE)) {
                 int id = Integer.parseInt(request.paths()[1]); 
-                taskResource.closeState(id);
+                taskResource.getTask(id);
                 
+                taskResource.closeState(id);
                 response.setStatus(HttpStatus.OK);
                 response.setBody(taskResource.getTask(id).toStringWithState());
             } else {

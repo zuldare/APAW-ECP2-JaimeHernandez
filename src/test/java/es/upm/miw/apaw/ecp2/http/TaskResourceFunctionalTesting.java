@@ -130,5 +130,22 @@ public class TaskResourceFunctionalTesting {
                 .build();
         response = new HttpClientService().httpRequest(request);
         assertEquals(HttpStatus.OK, response.getStatus());
+        assertEquals("{\"id\":1, \"state\":\"CLOSED\"}", response.getBody());
+    }
+    
+    @Test(expected = HttpException.class)
+    public void testCloseTaskIdNotFound() {
+        request = new HttpRequestBuilder().method(HttpMethod.PATCH).path(TaskResource.TASKS).path(TaskResource.ID_CLOSE).expandPath("1")
+                .build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    }
+    
+    @Test(expected = HttpException.class)
+    public void testCloseTaskRequestInvalid() {
+        request = new HttpRequestBuilder().method(HttpMethod.PATCH).path(TaskResource.TASKS).path(TaskResource.ID_CLOSE).expandPath("SSSS")
+                .build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
     }
 }
