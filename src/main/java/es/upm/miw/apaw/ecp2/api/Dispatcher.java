@@ -46,6 +46,20 @@ public class Dispatcher {
     }
 
     public void doPatch(HttpRequest request, HttpResponse response) {
+        try {
+             if (request.isEqualsPath(TaskResource.TASKS + TaskResource.ID_CLOSE)) {
+                int id = Integer.parseInt(request.paths()[1]); 
+                taskResource.getTask(id);
+                
+                taskResource.closeState(id);
+                response.setStatus(HttpStatus.OK);
+                response.setBody(taskResource.getTask(id).toStringWithState());
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
     }
 
     public void doDelete(HttpRequest request, HttpResponse response) {

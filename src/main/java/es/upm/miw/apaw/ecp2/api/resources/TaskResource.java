@@ -16,7 +16,9 @@ public class TaskResource {
     public static final String ID_USERS = ID + "/users";
 
     public static final String USERS = "/users";
-
+    
+    public static final String ID_CLOSE = ID + "/close";
+   
     public TaskResource() {
     }
 
@@ -42,5 +44,9 @@ public class TaskResource {
 
     public void deleteAllTasks() {
         new TaskController().deleteAllTasks();
+    }
+
+    public void closeState(int id) {
+        new TaskController().closeState(id);
     }
 }

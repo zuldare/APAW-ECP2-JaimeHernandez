@@ -15,7 +15,7 @@ Ejemplo: `GET /tasks/5`
 
 Parámetros | Respuesta | Respuesta si _id_ no entero
 --|--|--
--- | `OK (200) {"id":5,"state":"CREATED"}` |`BAD_REQUEST(400)` <br>`{"error":"TaskIdNotFoundException"}`<br> `{"error":"RequestInvalidException"}`
+-- | `OK (200) {"id":5,"state":"CREATED"}` | `BAD_REQUEST(400)`<br>`{"error":"RequestInvalidException"}`
 
 ## Crear una nueva tarea `POST /tasks` 
 > Crea una nueva tarea, devolviendo el id de la tarea creada.
@@ -38,7 +38,7 @@ Parámetros | Respuesta
 ## Devolver la lista de usuarios que realizan una tarea `GET /tasks/{id}/users`
 > Devuelve el listado de usuarios que realizan una tarea concreta.
 
-Ejemplo: `GET /tasks/{id}/1`
+Ejemplo: `GET /tasks/1/users`
 
 Parámetros | Respuesta | Respuesta si <br/>id no existe <br/>id no entero
 --|--|--
@@ -52,3 +52,13 @@ Ejemplo: `DELETE /tasks`
 Parámetros | Respuesta
 --|--
 --| `NO CONTENT (204)`
+
+
+## Cerrar el estado de una tarea concreta `PATCH /tasks/{id}/close` 
+> Poner el estado de una tarea concreta a cerrada. 
+
+Ejemplo: `PATCH /tasks/1/close`
+
+Parámetros | Respuesta | Respuesta errónea
+--|--|--
+--| `OK (200) {"id":5,"state":"CLOSED"}` |`BAD_REQUEST(400)`<br>`{"error":"TaskIdNotFoundException"}`<br> `{"error":"RequestInvalidException"}`
