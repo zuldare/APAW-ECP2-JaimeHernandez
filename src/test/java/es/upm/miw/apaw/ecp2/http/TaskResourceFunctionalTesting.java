@@ -91,10 +91,16 @@ public class TaskResourceFunctionalTesting {
         request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path(TaskResource.ID_USERS).expandPath("1")
                 .build();
         response = new HttpClientService().httpRequest(request);
-        String text = "{{\"id\":1,\"state\":\"IN_PROGRESS\"}, [{\"name\":\"Robert Martin\"}, {\"name\":\"Kent Beck\"}]}";
-                   //   {{"id":2, "state":"IN_PROGRESS"}, [{"name":Robert Martin}, {"name":Kent Beck}, ]
+        String text = "{{\"id\":2, \"state\":\"IN_PROGRESS\"}, [{\"name\":\"Robert Martin\"}, {\"name\":\"Kent Beck\"}]}";
         assertEquals(HttpStatus.OK, response.getStatus());
         assertEquals(text, response.getBody());
-        System.out.println(response.getBody());
+    }
+    
+    @Test(expected = HttpException.class)
+    public void testGetUsersFromTasksNotFoundId() {
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path(TaskResource.ID_USERS).expandPath("1454")
+                .build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatus());
     }
 }

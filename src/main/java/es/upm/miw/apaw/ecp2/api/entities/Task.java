@@ -18,6 +18,7 @@ public class Task {
         assert id >= 0;
         this.id = id;
         this.state = State.CREATED;
+        users = new ArrayList<User>();
     }
 
     public Task(int id, State state, List<User> listFixedUsers) {

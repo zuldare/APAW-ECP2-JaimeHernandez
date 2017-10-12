@@ -2,6 +2,7 @@ package es.upm.miw.apaw.ecp2.api.resources;
 
 import es.upm.miw.apaw.ecp2.api.controllers.TaskController;
 import es.upm.miw.apaw.ecp2.api.dtos.TaskDto;
+import es.upm.miw.apaw.ecp2.api.entities.Task;
 import es.upm.miw.apaw.ecp2.resources.exceptions.TaskIdNotFoundException;
 
 public class TaskResource {
@@ -18,6 +19,10 @@ public class TaskResource {
     }
 
     public TaskDto getTask(int id) throws TaskIdNotFoundException {
+        Task task = new TaskController().getTask(id);
+        if (task == null) {
+            throw new TaskIdNotFoundException(id+"");
+        }
         return new TaskDto(new TaskController().getTask(id));
     }
 

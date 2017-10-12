@@ -17,13 +17,16 @@ public class Dispatcher {
 
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath(TaskResource.TASKS_ID + "/users")) {
-                response.setStatus(HttpStatus.OK);
-                response.setBody(taskResource.createTaskWithFixedUsers().toStringWithStateAndUsers());
-            } else if (request.isEqualsPath(TaskResource.TASKS_ID)) {
+            if (request.isEqualsPath(TaskResource.TASKS_ID)) {
                 int id = Integer.parseInt(request.paths()[1]);
                 response.setStatus(HttpStatus.OK);
                 response.setBody(taskResource.getTask(id).toStringWithState());
+            } else if (request.isEqualsPath(TaskResource.TASKS_ID + "/users")) {
+                int id = Integer.parseInt(request.paths()[1]);
+                taskResource.getTask(id);
+                
+                response.setStatus(HttpStatus.OK);
+                response.setBody(taskResource.createTaskWithFixedUsers().toStringWithStateAndUsers());
             } else {
                 throw new RequestInvalidException(request.getPath());
             }

@@ -36,15 +36,20 @@ public class TaskDto {
     }
 
     public String toStringWithStateAndUsers() {
-        String userString = "[";
+        String userString = "[" + getUserNameFromUsers() + "]";
+        return "{{\"id\":" + id + ", \"state\":\"" + this.state + "\"}" + ", " + userString +"}";
+    }
+
+    private String getUserNameFromUsers() {
+        String result = "";
         int pos = 0;
         for (User user : users) {
-            userString += "{\"name\":" + user.getName() + "}";
-            if (pos < users.size()) {
-                userString += ", ";
+            result += "{\"name\":\"" + user.getName() + "\"}";
+            if (pos < users.size() - 1) {
+                result += ", ";
             }
+            pos++;
         }
-        userString += "]";
-        return "{{\"id\":" + id + ", \"state\":\"" + this.state + "\"}" + ", " + userString;
+        return result;
     }
 }
