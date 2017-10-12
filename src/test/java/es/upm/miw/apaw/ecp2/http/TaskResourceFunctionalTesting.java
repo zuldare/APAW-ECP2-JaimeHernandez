@@ -109,4 +109,18 @@ public class TaskResourceFunctionalTesting {
         response = new HttpClientService().httpRequest(request);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatus());
     }
+    
+    @Test
+    public void testDeleteTask() {
+        testCreateSingularTask();
+        
+        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
+        
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path("/1").build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatus());
+        
+    }
 }
