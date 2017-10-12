@@ -53,7 +53,11 @@ public class Dispatcher {
             if (request.isEqualsPath(TaskResource.TASKS_ID)) {
                 taskResource.deleteTask(Integer.valueOf(request.paths()[1]));
                 response.setStatus(HttpStatus.NO_CONTENT);
+            } else if (request.isEqualsPath(TaskResource.TASKS)) {
+                taskResource.deleteAllTasks();
+                response.setStatus(HttpStatus.NO_CONTENT);
             }
+            
         } catch (Exception e) {
             response.setStatus(HttpStatus.NO_CONTENT);
         }

@@ -48,4 +48,11 @@ public class TaskController {
         users.add(new User(1, "Kent Beck", Calendar.getInstance(), true));
         return users;
     }
+
+    public void deleteAllTasks() {
+        List<Task> tasksToDelete = DaoFactory.getFactory().getTaskDao().findAll();
+        for(Task task:tasksToDelete) {
+            DaoFactory.getFactory().getTaskDao().deleteById(task.getId());
+        }
+    }
 }
