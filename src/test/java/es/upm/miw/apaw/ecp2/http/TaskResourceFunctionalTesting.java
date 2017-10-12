@@ -61,22 +61,46 @@ public class TaskResourceFunctionalTesting {
     public void testDeleteTasksId() {
         testCreateSingularTask();
         request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/1").build();
-        response = new HttpClientService().httpRequest(request); 
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
-    }
-    
-    @Test 
-    public void testDeleteTaskNoTaskPreviouslyCreated() {
-        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/100").build();
-        response = new HttpClientService().httpRequest(request); 
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
-    }
-    
-    @Test 
-    public void testDeleteTaskStringId() {
-        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/XX").build();
-        response = new HttpClientService().httpRequest(request); 
+        response = new HttpClientService().httpRequest(request);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
     }
 
+    @Test
+    public void testDeleteTaskNoTaskPreviouslyCreated() {
+        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/100").build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
+    }
+
+    @Test
+    public void testDeleteTaskStringId() {
+        request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(TaskResource.TASKS).path("/XX").build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
+    }
+
+    @Test(expected = HttpException.class)
+    public void testGetUsersFromTasksIdMalFormedPath() {
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS_ID).expandPath("users").build();
+        response = new HttpClientService().httpRequest(request);
+    }
+
+    @Test
+    public void testGetUsersFromTasksId() {
+        testCreateSingularTask();
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path(TaskResource.ID_USERS).expandPath("1")
+                .build();
+        response = new HttpClientService().httpRequest(request);
+        String text = "{{\"id\":2, \"state\":\"IN_PROGRESS\"}, [{\"name\":\"Robert Martin\"}, {\"name\":\"Kent Beck\"}]}";
+        assertEquals(HttpStatus.OK, response.getStatus());
+        assertEquals(text, response.getBody());
+    }
+
+    @Test(expected = HttpException.class)
+    public void testGetUsersFromTasksNotFoundId() {
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path(TaskResource.ID_USERS).expandPath("1454")
+                .build();
+        response = new HttpClientService().httpRequest(request);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatus());
+    }
 }
