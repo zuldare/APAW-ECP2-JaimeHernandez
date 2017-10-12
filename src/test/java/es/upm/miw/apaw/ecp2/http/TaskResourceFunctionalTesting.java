@@ -95,7 +95,7 @@ public class TaskResourceFunctionalTesting {
         assertEquals(HttpStatus.OK, response.getStatus());
         assertEquals(text, response.getBody());
     }
-    
+
     @Test(expected = HttpException.class)
     public void testGetUsersFromTasksNotFoundId() {
         request = new HttpRequestBuilder().method(HttpMethod.GET).path(TaskResource.TASKS).path(TaskResource.ID_USERS).expandPath("1454")

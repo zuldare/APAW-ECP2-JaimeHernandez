@@ -37,7 +37,7 @@ public class TaskDto {
 
     public String toStringWithStateAndUsers() {
         String userString = "[" + getUserNameFromUsers() + "]";
-        return "{{\"id\":" + id + ", \"state\":\"" + this.state + "\"}" + ", " + userString +"}";
+        return "{{\"id\":" + id + ", \"state\":\"" + this.state + "\"}" + ", " + userString + "}";
     }
 
     private String getUserNameFromUsers() {

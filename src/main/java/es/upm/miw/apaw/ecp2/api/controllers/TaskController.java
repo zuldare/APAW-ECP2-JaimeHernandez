@@ -35,14 +35,14 @@ public class TaskController {
     public void deleteTask(int id) {
         DaoFactory.getFactory().getTaskDao().deleteById(id);
     }
-    
+
     public Task createTaskWithFixedUsers() {
-        int id = getMaxIdFromTasksList(); 
-        DaoFactory.getFactory().getTaskDao().create(new Task(id,State.IN_PROGRESS,getListFixedUsers()));
+        int id = getMaxIdFromTasksList();
+        DaoFactory.getFactory().getTaskDao().create(new Task(id, State.IN_PROGRESS, getListFixedUsers()));
         return getTask(id);
     }
 
-    private List<User> getListFixedUsers(){
+    private List<User> getListFixedUsers() {
         List<User> users = new ArrayList<User>();
         users.add(new User(1, "Robert Martin", Calendar.getInstance(), true));
         users.add(new User(1, "Kent Beck", Calendar.getInstance(), true));
