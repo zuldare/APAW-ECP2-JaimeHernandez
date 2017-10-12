@@ -43,3 +43,12 @@ Ejemplo: `GET /tasks/{id}/1`
 Parámetros | Respuesta | Respuesta si <br/>id no existe <br/>id no entero
 --|--|--
 --|`OK (200) {{"id":1,"state":"IN_PROGRESS"},[{"name":"Robert Martin"},{"name":"Kent Beck"}]}`|`BAD_REQUEST(400)` <br>`{"error":"TaskIdNotFoundException"}`<br> `{"error":"RequestInvalidException"}`
+
+## Borrar todas tarea `DELETE /tasks`
+> Borra todas las tareas existentes, no devolviendo nada en el cuerpo
+
+Ejemplo: `DELETE /tasks`
+
+Parámetros | Respuesta
+--|--
+--| `NO CONTENT (204)`
